@@ -1,0 +1,28 @@
+//media
+@mixin pad{
+    @media(max-width: 768px){
+        @content;
+    }
+}
+@mixin mobile{
+    @media(max-width: 414px){
+        @content;
+    }
+}
+
+//other
+@mixin size($w, $h) {
+    width: $w;
+    height: $h;
+}
+@mixin bgSetting($contain, $position) {
+    background-repeat: no-repeat;
+    background-size: $contain;
+    background-position: $position;
+}
+@mixin center($left,$top){
+    position: relative;
+    left: $left;
+    top: $top;
+    transform: translate(-$left,-$top);
+}

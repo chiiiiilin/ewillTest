@@ -1,0 +1,276 @@
+@import "mixin";
+@import "color";
+@import "font";
+
+body {
+    background-color: $background;
+    font-family: "Noto Sans TC", sans-serif;
+    text-align: center;
+}
+
+main {
+    margin-top: -30px;
+    background-color: $primary-blue;
+    background-image: url(../images/wave.svg);
+    color: $primary-blue;
+    position: relative;
+    display: block;
+    @include bgSetting(cover 100%, center 80px);
+
+    h2 {
+        padding-top: 80px;
+
+        span {
+            font-size: 28px;
+            display: block;
+        }
+    }
+
+    .notice {
+        background-color: $primary-white;
+        border: solid 2px $primary-brown;
+        border-radius: 20px;
+        padding: 20px;
+        position: relative;
+        @include center(50%, 0);
+        @include size(50%, auto);
+
+        .sup {
+            position: absolute;
+            left: 85%;
+            top: -50px;
+            display: flex;
+            flex-direction: column;
+            span {
+                background-image: url(../images/bubble.svg);
+                display: inline-block;
+                padding-left: 60%;
+                @include bgSetting(contain, center);
+                @include size(20px, 20px);
+                animation: bubbleBig 2s infinite;
+
+                &::before {
+                    content: "";
+                    background-image: url(../images/bubble.svg);
+                    display: inline-block;
+                    transform: translate(0, -120%);
+                    @include bgSetting(contain, center);
+                    @include size(15px, 15px);
+                    animation: bubbleSmall 2s infinite;
+                }
+                @keyframes bubbleBig {
+                    0% {
+                        opacity: 0;
+                    }
+                    75% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+                @keyframes bubbleSmall {
+                    0% {
+                        opacity: 0;
+                    }
+                    75% {
+                        opacity: 0;
+                    }
+                    100% {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+        .sup2 {
+            display: flex;
+            position: absolute;
+            left: 5%;
+            span {
+                background-image: url(../images/fireworks.svg);
+                display: inline-block;
+                @include bgSetting(contain, center);
+                @include size(60px, 60px);
+                z-index: 2;
+                animation: fireworks 3s linear infinite;
+
+                @keyframes fireworks {
+                    0% {
+                        transform: rotate(0);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+            img {
+                margin-left: -20%;
+                margin-top: -10%;
+            }
+        }
+
+        h3 {
+            position: relative;
+            &::before,
+            &::after {
+                content: "";
+                background-image: url(../images/cactus.svg);
+                display: inline-block;
+                margin: 0 5px;
+                @include size(30px, 40px);
+                @include center(0, -20%);
+            }
+        }
+
+        li {
+            text-align: left;
+            font-weight: 500;
+            line-height: 180%;
+        }
+    }
+    .wave {
+        display: flex;
+        margin-top: 50px;
+
+        img {
+            animation: wavemove 5s infinite alternate;
+        }
+
+        @keyframes wavemove {
+            0% {
+                transform: translate(-50%, 20px);
+            }
+            100% {
+                transform: translate(0, 20px);
+            }
+        }
+    }
+}
+#form {
+    .title {
+        position: relative;
+        &::after {
+            content: "";
+            background-image: url(../images/tutle.svg);
+            display: inline-block;
+            @include size(50px, 80px);
+            @include bgSetting(contain, center);
+            position: absolute;
+            bottom: -50%;
+            left: calc(50% + 35px);
+            z-index: 6;
+        }
+        h3 {
+            position: relative;
+            transform: translate(0, 100%);
+            z-index: 5;
+            display: inline-block;
+            background-color: #fff;
+            color: $primary-brown;
+            padding: 10px 20px;
+            border: solid 2px $primary-brown;
+            border-radius: 50px;
+            box-shadow: 0px 1px 10px rgba(73, 72, 72, 0.25);
+        }
+    }
+
+    .formlist {
+        background-color: #fff;
+        color: $primary-blue;
+        border: solid 2px $primary-brown;
+        border-radius: 20px;
+        box-shadow: 0px 1px 10px rgba(73, 72, 72, 0.25);
+        padding: 20px;
+        padding-right: 30px;
+        @include center(50%, 0);
+        @include size(50%, auto);
+
+        label,
+        input,
+        select {
+            display: block;
+            text-align: left;
+            width: 100%;
+        }
+        input,
+        select {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-progress-appearance: none;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            outline: none;
+            border: solid 1px $primary-blue;
+            border-radius: 20px;
+            padding: 10px 0;
+            padding-left: 10px;
+            caret-color: $primary-blue;
+            line-height: 150%;
+
+            &:focus {
+                border: solid 2px $primary-blue;
+            }
+
+            &::-webkit-calendar-picker-indicator,
+            &::-webkit-list-button {
+                display: none !important;
+            }
+        }
+        datalist {
+            display: none;
+        }
+        select {
+            width: calc(100% + 10px);
+        }
+        .select {
+            position: relative;
+            &::after {
+                content: "▾";
+                color: $primary-blue;
+                pointer-events: none;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+            }
+        }
+    }
+    .failure {
+        position: relative;
+        transition: .5s;
+        &::before {
+            content: "";
+            background-image: url(../images/failure.svg);
+            display: inline-block;
+            @include size(25px, 25px);
+            @include bgSetting(contain, center);
+            position: absolute;
+            bottom: calc(50% - 12.5px);
+            left: calc(50% - 75px);
+            z-index: 6;
+        }
+    }
+    .failureText{
+        color: $failure;
+        padding-left: 50px;
+    }
+    .success {
+        position: relative;
+        transition: .5s;
+        &::before {
+            content: "";
+            background-image: url(../images/success.svg);
+            display: inline-block;
+            @include size(25px, 25px);
+            @include bgSetting(contain, center);
+            position: absolute;
+            bottom: calc(50% - 12.5px);
+            left: calc(50% - 75px);
+            z-index: 6;
+        }
+    }
+    .successText{
+        color: $success;
+        padding-left: 50px;
+    }
+}

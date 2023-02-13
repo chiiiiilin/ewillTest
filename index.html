@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>鎰威科技前端面試考題</title>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        />
+        <link rel="stylesheet" href="css/style.min.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div id="app">
+            <h1 style="display: none">鎰威科技前端面試考題</h1>
+            <main>
+                <h2>There is no one <span>who loves pain</span></h2>
+                <button @click="goTo('#form')">FORM</button>
+                <section class="notice">
+                    <div class="sup">
+                        <span></span>
+                        <img src="images/sup.svg" alt="一艘小船" />
+                    </div>
+                    <div v-for="rule in rules">
+                        <h3>{{rule.title}}</h3>
+                        <ol>
+                            <li v-for="cc in rule.contents">{{cc}}</li>
+                        </ol>
+                    </div>
+                    <div class="sup2">
+                        <span></span>
+                        <img src="images/sup2.svg" alt="一艘小船" />
+                    </div>
+                </section>
+                <div class="wave">
+                    <img src="images/wave2.svg" alt="" /><img
+                        src="images/wave2.svg"
+                        alt=""
+                    /><img src="images/wave2.svg" alt="" />
+                </div>
+            </main>
+            <section id="form">
+                <div>
+                    <div class="title">
+                        <h3>FORM</h3>
+                    </div>
+                    <form class="formlist" ref="form">
+                        <div class="select">
+                            <label
+                                >store
+                                <input
+                                    list="store"
+                                    name="store"
+                                    placeholder="placeholder text"
+                                    v-model="selectStore"
+                                    required
+                                />
+                            </label>
+                            <datalist id="store">
+                                <option
+                                    v-for="store in stores"
+                                    :value="store.value"
+                                >
+                                    {{store.value}}
+                                </option>
+                            </datalist>
+                        </div>
+                        <label
+                            >name
+                            <input
+                                type="name"
+                                class="name"
+                                placeholder="placeholder text"
+                                onkeyup="value=value.replace(/[\d]/g,) "
+                                onbeforepaste="clipboardData.setData(text,clipboardData.getData(text).replace(/[\d]/g,))"
+                                required
+                            />
+                        </label>
+                        <label
+                            >phone
+                            <input
+                                type="tel"
+                                maxlength="10"
+                                placeholder="placeholder text"
+                                oninput="value=value.replace(/[^\d]/g,'')"
+                                required
+                            />
+                        </label>
+                        <label
+                            >Amout of consumption
+                            <input
+                                type="tel"
+                                placeholder="placeholder text"
+                                minlength="0"
+                                oninput="value=value.replace(/[^\d]/g,'')"
+                                required
+                            />
+                        </label>
+                        <div class="select">
+                            <label
+                                >payment
+                                <select
+                                    name="payment"
+                                    v-model="selectPayment"
+                                    required
+                                >
+                                    <option
+                                        v-for="payment in payments"
+                                        :value="payment.value"
+                                    >
+                                        {{payment.value}}
+                                    </option>
+                                </select>
+                            </label>
+                        </div>
+                    </form>
+                    <div class="submitbox">
+                        <input
+                            id="submit"
+                            type="submit"
+                            value="submit"
+                            @click.prevent="check"
+                        />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    rules: [
+                        {
+                            title: "paragraph",
+                            contents: [
+                                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            ],
+                        },
+                        {
+                            title: "paragraph",
+                            contents: [
+                                //{template:`<p>hello</p>`},  //不知怎麼在物件裡放template
+                                "Quisque sodales leo vitae vulputate auctor.",
+                                "Proin ac justo ut nisl tincidunt imperdiet.",
+                                "Maecenas viverra libero a pellentesque blandit.",
+                                "Cras tristique tellus id leo bibendum, eu dapibus nisl accumsan.",
+                                " Donec ultrices sapien vitae leo venenatis ullamcorper.",
+                            ],
+                        },
+                    ],
+                    selectStore: "",
+                    stores: [
+                        { value: "store1" },
+                        { value: "store2" },
+                        { value: "store3" },
+                    ],
+                    selectPayment: "digtal payment",
+                    payments: [{ value: "digtal payment" }, { value: "ATM" }],
+                };
+            },
+            methods: {
+                goTo(selector) {
+                    document.querySelector(selector).scrollIntoView({
+                        behavior: "smooth",
+                    });
+                },
+                check() {
+                    const form = document.querySelector(".formlist");
+                    let name = document.querySelector('.name');
+                    if (form.reportValidity()) {
+                        this.success();
+                    }else {
+                        this.failure();
+                    }
+                },
+
+                success() {
+                    let submit = document.querySelector("#submit");
+                    submit.value = "success";
+                    submit.classList.remove('failureText');
+                    submit.classList.add('successText');
+
+                    let submitBox = document.querySelector('.submitbox');
+                    submitBox.classList.remove('failure');
+                    submitBox.classList.add('success');
+                },
+                failure() {
+                    let submit = document.querySelector("#submit");
+                    submit.value = "failure";
+                    submit.classList.add('failureText');
+
+                    let submitBox = document.querySelector('.submitbox');
+                    submitBox.classList.add('failure');
+                },
+            },
+        }).mount("#app");
+    </script>
+</html>
