@@ -136,6 +136,7 @@ main {
     .wave {
         display: flex;
         margin-top: 50px;
+        vertical-align: top;
 
         img {
             animation: wavemove 5s infinite alternate;
