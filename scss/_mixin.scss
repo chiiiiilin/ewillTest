@@ -1,10 +1,10 @@
 //media
-@mixin pad{
+@mixin pad(){
     @media(max-width: 768px){
         @content;
     }
 }
-@mixin mobile{
+@mixin mobile(){
     @media(max-width: 414px){
         @content;
     }

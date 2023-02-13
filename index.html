@@ -41,10 +41,9 @@
                     </div>
                 </section>
                 <div class="wave">
-                    <img src="images/wave2.svg" alt="" /><img
+                    <img src="images/wave2.svg" /><img
                         src="images/wave2.svg"
-                        alt=""
-                    /><img src="images/wave2.svg" alt="" />
+                    /><img src="images/wave2.svg" />
                 </div>
             </main>
             <section id="form">
@@ -79,7 +78,7 @@
                                 type="name"
                                 class="name"
                                 placeholder="placeholder text"
-                                onkeyup="value=value.replace(/[\d]/g,) "
+                                oninput="value=value.replace(/[\d]/g,'')"
                                 onbeforepaste="clipboardData.setData(text,clipboardData.getData(text).replace(/[\d]/g,))"
                                 required
                             />
@@ -176,10 +175,10 @@
                 },
                 check() {
                     const form = document.querySelector(".formlist");
-                    let name = document.querySelector('.name');
+                    let name = document.querySelector(".name");
                     if (form.reportValidity()) {
                         this.success();
-                    }else {
+                    } else {
                         this.failure();
                     }
                 },
@@ -187,20 +186,20 @@
                 success() {
                     let submit = document.querySelector("#submit");
                     submit.value = "success";
-                    submit.classList.remove('failureText');
-                    submit.classList.add('successText');
+                    submit.classList.remove("failureText");
+                    submit.classList.add("successText");
 
-                    let submitBox = document.querySelector('.submitbox');
-                    submitBox.classList.remove('failure');
-                    submitBox.classList.add('success');
+                    let submitBox = document.querySelector(".submitbox");
+                    submitBox.classList.remove("failure");
+                    submitBox.classList.add("success");
                 },
                 failure() {
                     let submit = document.querySelector("#submit");
                     submit.value = "failure";
-                    submit.classList.add('failureText');
+                    submit.classList.add("failureText");
 
-                    let submitBox = document.querySelector('.submitbox');
-                    submitBox.classList.add('failure');
+                    let submitBox = document.querySelector(".submitbox");
+                    submitBox.classList.add("failure");
                 },
             },
         }).mount("#app");

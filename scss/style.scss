@@ -7,6 +7,9 @@ body {
     font-family: "Noto Sans TC", sans-serif;
     text-align: center;
 }
+#app{
+    overflow-x: hidden;
+}
 
 main {
     margin-top: -30px;
@@ -31,9 +34,11 @@ main {
         border: solid 2px $primary-brown;
         border-radius: 20px;
         padding: 20px;
-        position: relative;
         @include center(50%, 0);
         @include size(50%, auto);
+        @include pad() {
+            @include size(70%, auto);
+        }
 
         .sup {
             position: absolute;
@@ -184,6 +189,9 @@ main {
         padding-right: 30px;
         @include center(50%, 0);
         @include size(50%, auto);
+        @include mobile() {
+            @include size(70%, auto);
+        }
 
         label,
         input,
@@ -215,6 +223,7 @@ main {
             &::-webkit-calendar-picker-indicator,
             &::-webkit-list-button {
                 display: none !important;
+                opacity: 0 !important;
             }
         }
         datalist {
@@ -237,7 +246,7 @@ main {
     }
     .failure {
         position: relative;
-        transition: .5s;
+        transition: 0.5s;
         &::before {
             content: "";
             background-image: url(../images/failure.svg);
@@ -250,13 +259,13 @@ main {
             z-index: 6;
         }
     }
-    .failureText{
+    .failureText {
         color: $failure;
         padding-left: 50px;
     }
     .success {
         position: relative;
-        transition: .5s;
+        transition: 0.5s;
         &::before {
             content: "";
             background-image: url(../images/success.svg);
@@ -269,7 +278,7 @@ main {
             z-index: 6;
         }
     }
-    .successText{
+    .successText {
         color: $success;
         padding-left: 50px;
     }
