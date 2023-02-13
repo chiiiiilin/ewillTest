@@ -7,7 +7,7 @@ body {
     font-family: "Noto Sans TC", sans-serif;
     text-align: center;
 }
-#app{
+#app {
     overflow-x: hidden;
 }
 
@@ -193,7 +193,10 @@ main {
         @include mobile() {
             @include size(70%, auto);
         }
-
+        label::after {
+            content: "*";
+            color: red;
+        }
         label,
         input,
         select {
