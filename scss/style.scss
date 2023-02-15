@@ -37,7 +37,7 @@ main {
         @include center(50%, 0);
         @include size(50%, auto);
         @include pad() {
-            @include size(70%, auto);
+            @include size(80%, auto);
         }
 
         .sup {
@@ -177,6 +177,7 @@ main {
             border: solid 2px $primary-brown;
             border-radius: 50px;
             box-shadow: 0px 1px 10px rgba(73, 72, 72, 0.25);
+            letter-spacing: .2em;
         }
     }
 
@@ -190,12 +191,14 @@ main {
         padding-right: 30px;
         @include center(50%, 0);
         @include size(50%, auto);
-        @include mobile() {
-            @include size(70%, auto);
+        @include pad() {
+            @include size(80%, auto);
         }
-        label::after {
-            content: "*";
-            color: red;
+        label span{
+            color: $primary-brown;
+        }
+        label .mark{
+            margin-left: 10px;
         }
         label,
         input,
@@ -248,6 +251,7 @@ main {
             }
         }
     }
+    //submit的成功失敗樣式
     .failure {
         position: relative;
         transition: 0.5s;
@@ -285,5 +289,152 @@ main {
     .successText {
         color: $success;
         padding-left: 50px;
+    }
+}
+.lottery {
+    background-image: url(../images/sands.svg);
+    @include bgSetting(cover, center);
+    @include center(40%, 0);
+    @include size(100%, auto);
+    padding: 5% 0;
+    .items {
+        @include center(50%, 0);
+        @include size(60%, auto);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        @include pad() {
+            @include size(90%, auto);
+        }
+
+        .item {
+            margin: 32px 16px;
+            box-sizing: border-box;
+            width: calc(33.333333% - 32px);
+            background-color: #fff;
+            box-shadow: 0px 8px 0px #edeef0;
+            border-radius: 20px;
+            @include mobile() {
+                width: calc(50% - 32px);
+            }
+            .item-flexbox {
+                display: flex;
+                justify-content: space-between;
+
+                .item-name {
+                    background-image: url(../images/certificateD.svg);
+                    @include bgSetting(contain, center);
+                    @include center(50%, 40%);
+                    padding: 16%;
+                    color: white;
+                    font-weight: 700;
+                    box-sizing: border-box;
+                    @include mobile {
+                        padding: 14%;
+                    }
+                }
+                .item-counts {
+                    border: solid 1px;
+                    border-radius: 20px;
+                    padding: 3px 5px;
+                    border-color: $certificate-d;
+                    color: $certificate-d;
+                    margin: 10px;
+                    @include size(auto, 100%);
+                    @include mobile {
+                        padding: 3px;
+                        margin: 8px;
+                    }
+                }
+            }
+            .item-content {
+                margin: 0;
+                color: $certificate-d;
+                font-weight: 700;
+                padding-bottom: 5%;
+                font-size: 18px;
+                @include center(50%, 50%);
+            }
+        }
+        .item:first-child,
+        .item:nth-child(2),
+        .item:nth-child(3) {
+            .item-flexbox {
+                .item-name {
+                    background-image: url(../images/certificateA.svg);
+                    padding: 8% 16% 16% 16%;
+                    margin-bottom: 8%;
+                    @include mobile {
+                        padding: 6% 14% 14% 14%;
+                    }
+                }
+                .item-counts {
+                    border-color: $certificate-a;
+                    color: $certificate-a;
+                }
+            }
+            .item-content {
+                color: $certificate-a;
+            }
+        }
+    }
+}
+.notice{
+    padding: 5% 0;
+    .noticebox{
+        @include size(15%, auto);
+        @include center(50%, 0);
+
+        @include pad(){
+            @include size(40%, auto);
+        }
+        @include mobile(){
+            @include size(60%, auto);
+        }
+
+        &::before, &::after{
+            content: '';
+            position: absolute;
+            top: 0;
+            @include size(1px, 100%);
+            background-color: $primary-blue;
+        }
+        &::before{
+            left: 0;
+            transform: translateX(-30px) skew(15deg);
+        }
+        &::after{
+            right: 0;
+            transform: translateX(30px) skew(-15deg);
+        }
+        span{
+            color: $primary-brown;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        h3{
+            color: $primary-blue;
+            letter-spacing: normal;
+            word-spacing: .2em;
+        }
+    }
+}
+.footer{
+    background-color: $primary-blue;
+    border-radius: 50px 50px 0 0;
+    padding: 5%;
+    h3{
+        color: #fff;
+        padding: 10px;
+        @include size(25%, auto);
+        @include center(50%, 0);
+
+        @include pad(){
+            @include size(60%, auto);
+        }
+        @include mobile(){
+            @include size(80%, auto);
+        }
     }
 }

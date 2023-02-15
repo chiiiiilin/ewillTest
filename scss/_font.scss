@@ -11,19 +11,28 @@ h3 {
     font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.2em;
+    word-spacing: 0.2em;
+    line-height: 140%;
 }
-p, input{
+p,
+input {
     font-size: 16px;
     font-weight: 400;
 }
-button, input[type="submit"] {
+span {
+    font-size: 12px;
+    display: inline-block;
+}
+button,
+input[type="submit"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     font-size: 18px;
     font-weight: 700;
     background-color: $primary-brown;
-    box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35), 0px -4px 10px rgba(255, 255, 255, 0.9);
+    box-shadow: 0px 4px 10px rgba(40, 35, 35, 0.35),
+        0px -4px 10px rgba(255, 255, 255, 0.9);
     border: none;
     border-radius: 50px;
     padding: 16px 20px;
@@ -34,10 +43,10 @@ button, input[type="submit"] {
     position: relative;
     @include size(200px, 57px);
 
-    &:active{
-        background-color: #D3A995;
+    &:active {
+        background-color: #d3a995;
     }
-    &::before{
-        content: '';
+    &::before {
+        content: "";
     }
 }
