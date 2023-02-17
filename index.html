@@ -54,13 +54,14 @@
                     <form class="formlist" ref="form">
                         <div class="select">
                             <label
-                                >store <span>*</span>
+                                >store <span>*</span> <span class="mark"></span>
                                 <input
                                     list="store"
                                     class="store"
                                     name="store"
                                     placeholder="placeholder text"
                                     v-model="selectStore"
+                                    @input="checkStore"
                                     required
                                 />
                             </label>
@@ -81,7 +82,7 @@
                                 placeholder="placeholder text"
                                 oninput="value=value.replace(/[\d]/g,'')"
                                 onbeforepaste="clipboardData.setData(text,clipboardData.getData(text).replace(/[\d]/g,))"
-                                @change="checkName"
+                                @input="checkName"
                                 required
                             />
                         </label>
@@ -90,7 +91,7 @@
                             <input
                                 type="tel"
                                 class="phone"
-                                @change="checkPhone"
+                                @input="checkPhone"
                                 maxlength="10"
                                 pattern="09\d{2}\d{6}"
                                 placeholder="placeholder text"
@@ -107,7 +108,7 @@
                                 placeholder="placeholder text"
                                 minlength="0"
                                 oninput="value=value.replace(/[^\d]/g,'')"
-                                @change="checkAmout"
+                                @input="checkAmout"
                                 required
                             />
                         </label>
@@ -223,44 +224,67 @@
                 },
                 check() {
                     const form = document.querySelector(".formlist");
-                    let phone = document.querySelector(".phone").value;
                     if (form.reportValidity()) {
-                        if (phone.length < 10) {
-                            alert("請輸入10位數電話號碼!");
-                            this.failure();
-                        } else {
-                            this.success();
-                        }
+                        this.success();
                     } else {
                         this.failure();
                     }
                 },
-                checkName(){
+                checkStore() {
+                    let store = document.querySelector(".store").value;
+                    let opts = document.querySelector("#store").options;
+                    let mark = document.querySelectorAll("label .mark");
+                    for (let opt, i = 0; i < opts.length; i++) {
+                        opt = opts[i];
+                        if (store == opt.text) {
+                            mark[0].innerText = "✓ required";
+                            mark[0].style.color = "#b3b960";
+                            return true;
+                        } else {
+                            mark[0].innerText = "✗ no result";
+                            mark[0].style.color = "#f7bbbb";
+                            return false;
+                        }
+                    }
+                },
+                checkName() {
                     let name = document.querySelector(".name").value;
                     let mark = document.querySelectorAll("label .mark");
                     if (name.length < 1) {
-                        mark[0].innerText = "wrong format";
+                        mark[1].innerText = "✗ wrong format";
+                        mark[1].style.color = "#f7bbbb";
+                        return false;
                     } else {
-                        mark[0].innerText = "required";
+                        mark[1].innerText = "✓ required";
+                        mark[1].style.color = "#b3b960";
+                        return true;
                     }
                 },
                 checkPhone() {
                     let phone = document.querySelector(".phone").value;
+                    let re = /09\d{2}\d{6}/;
                     let mark = document.querySelectorAll("label .mark");
-                    if (phone.length < 10) {
-                        mark[1].innerText = "wrong format";
+                    if (re.test(phone)) {
+                        mark[2].innerText = "✓ required";
+                        mark[2].style.color = "#b3b960";
+                        return true;
                     } else {
-                        mark[1].innerText = "required";
+                        mark[2].innerText = "✗ wrong format";
+                        mark[2].style.color = "#f7bbbb";
+                        return false;
                     }
                 },
-                checkAmout(){
+                checkAmout() {
                     let amout = document.querySelector(".amout").value;
                     let mark = document.querySelectorAll("label .mark");
                     if (amout.length < 1) {
-                        mark[2].innerText = "wrong format";
-                        mark[2].innerText.style.color = 'red';
+                        mark[3].innerText = "✗ wrong format";
+                        mark[3].style.color = "#f7bbbb";
+                        return false;
                     } else {
-                        mark[2].innerText = "required";
+                        mark[3].innerText = "✓ required";
+                        mark[3].style.color = "#b3b960";
+                        return true;
                     }
                 },
                 success() {

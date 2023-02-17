@@ -177,7 +177,7 @@ main {
             border: solid 2px $primary-brown;
             border-radius: 50px;
             box-shadow: 0px 1px 10px rgba(73, 72, 72, 0.25);
-            letter-spacing: .2em;
+            letter-spacing: 0.2em;
         }
     }
 
@@ -194,10 +194,10 @@ main {
         @include pad() {
             @include size(80%, auto);
         }
-        label span{
+        label span {
             color: $primary-brown;
         }
-        label .mark{
+        label .mark {
             margin-left: 10px;
         }
         label,
@@ -380,61 +380,66 @@ main {
         }
     }
 }
-.notice{
+.notice {
     padding: 5% 0;
-    .noticebox{
+    .noticebox {
         @include size(15%, auto);
         @include center(50%, 0);
 
-        @include pad(){
+        @include pad() {
             @include size(40%, auto);
         }
-        @include mobile(){
+        @include mobile() {
             @include size(60%, auto);
         }
 
-        &::before, &::after{
-            content: '';
+        &::before,
+        &::after {
+            content: "";
             position: absolute;
             top: 0;
             @include size(1px, 100%);
             background-color: $primary-blue;
         }
-        &::before{
+        &::before {
             left: 0;
             transform: translateX(-30px) skew(15deg);
         }
-        &::after{
+        &::after {
             right: 0;
             transform: translateX(30px) skew(-15deg);
         }
-        span{
+        span {
             color: $primary-brown;
             font-size: 18px;
             font-weight: 700;
         }
-        h3{
+        h3 {
             color: $primary-blue;
             letter-spacing: normal;
-            word-spacing: .2em;
+            word-spacing: 0.2em;
         }
     }
 }
-.footer{
+.footer {
     background-color: $primary-blue;
     border-radius: 50px 50px 0 0;
     padding: 5%;
-    h3{
+    h3 {
         color: #fff;
         padding: 10px;
         @include size(25%, auto);
         @include center(50%, 0);
 
-        @include pad(){
+        @include pad() {
             @include size(60%, auto);
         }
-        @include mobile(){
+        @include mobile() {
             @include size(80%, auto);
         }
+    }
+    img {
+        width: min-content;
+        @include center(50%, 0);
     }
 }
